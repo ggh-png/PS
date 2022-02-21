@@ -14,7 +14,7 @@ void splitAndEnterReportList(vector<string> id_list, vector<string> report, int 
     string stringBuffer;
     vector<vector<bool>> reportList(id_list.size(), vector<bool>(id_list.size()));
     vector<int> reportSate(id_list.size());
-    vector<int> answer(id_list.size());
+    vector<int> answer(id_list.size(), 0);
 
     for(int i=0; i <= id_list.size(); i++)
     {
@@ -34,12 +34,16 @@ void splitAndEnterReportList(vector<string> id_list, vector<string> report, int 
                     {
                         reportList[j][k] = true; // reportList[][]에 저장 (신고 리스트 등록)
                         reportSate[k] += 1;   // reportSate에 스택 업 (신고 현황 업데이트)
+                        answer[j] += (reportSate[k] >= limit) ? 1 : 0;  
                     }
-                    else if(reportSate[k] >= limit)
-                    {
-                        answer[j] += 1;
-                        //break;
-                    }
+
+
+
+                    // else if(reportSate[k] >= 2)//신고가 누적되면
+                    // {
+                    //     answer[j] += 1; // 메일발송 
+                    //     //break;
+                    // }
                 }
             }
             // --------------------------------------------------
