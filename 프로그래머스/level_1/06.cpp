@@ -17,23 +17,47 @@ void splitAndEnterReportList(vector<string> id_list, vector<string> report, int 
     vector<vector<bool>> reportList(id_list.size(), vector<bool>(id_list.size()));
     vector<int> reportSate(id_list.size());
 
-    temp.clear(); // 초기화
-
-    istringstream ss(report[0]);
-    while (getline(ss, stringBuffer, ' '))
-        temp.push_back(stringBuffer);
-    //"temp[0] = muzi, tem[1] = frodo"
-    // 신고자 무지, 신고대상 프로도 
-
-    if(temp[0] == id_list[0]) // 신고자를 id리스트에서 찾으면 
+    for(int i=0; i <= id_list.size(); i++)
     {
-        reportList[0][1] = true; // reportList[][]에 저장 (신고 리스트 등록)
-        reportSate[1] += 1;   // reportSate에 스택 업 (신고 현황 업데이트)
+        temp.clear(); // 초기화
+        istringstream ss(report[i]);
+        while (getline(ss, stringBuffer, ' '))
+            temp.push_back(stringBuffer);
+        //"temp[0] = muzi, tem[1] = frodo"
+        // 신고자 무지, 신고대상 프로도 
+        for(int k=0; k < id_list.size(); k++)
+            if(temp[0] == id_list[k]) // 신고자를 id리스트에서 찾으면 
+           {
+                for(int j=0; j < id_list.size(); j++)
+                {
+                    if(temp[1] == id_list[j]) // 신고대상 
+                    {
+                        reportList[k][j] = true; // reportList[][]에 저장 (신고 리스트 등록)
+                        reportSate[j] += 1;   // reportSate에 스택 업 (신고 현황 업데이트)
+                    }
+                }
+            }
+
+            
         for(auto el : reportSate)
         {
             cout << el << " ";
         }
-        cout << endl;
+
+
+        cout << endl << endl << "reportList" << endl;
+
+        for(int i=0; i < id_list.size(); i++)
+        {
+            for(int j=0; j < id_list.size(); j++)
+            {
+                cout << reportList[i][j] << " ";
+            }
+            cout << endl; 
+        }
+        
+        
+        
     }   
 }
 
@@ -48,7 +72,8 @@ int main()
 
 {
     vector<string> id_list{"muzi", "frodo", "apeach", "neo"};
-    vector<string> report{"muzi frodo"};
+    vector<string> report{ "muzi frodo","apeach frodo","frodo neo",
+		"muzi neo","apeach muzi" };
     int k = 2;
 
     //solution(id_list, report, k);
