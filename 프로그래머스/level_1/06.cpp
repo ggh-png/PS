@@ -53,7 +53,7 @@ void splitAndEnterReportList(vector<string> id_list, vector<string> report, int 
     {
         cout << el << " ";
     }
-
+s
 // 신고 기록 출력
     cout << endl << endl << "reportList" << endl << endl;
 
