@@ -11,12 +11,12 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
     // split
     vector<string> temp;
     string stringBuffer;
-    vector<vector<bool>> reportList(id_list.size(), vector<bool>(id_list.size()));
+    vector<vector<bool>> reportList(report.size(), vector<bool>(id_list.size()));
     vector<int> reportSate(id_list.size());
     vector<int> answer(id_list.size(), 0);
     vector<int> list(id_list.size(), 0);
 
-    for(int i=0; i < id_list.size(); i++)
+    for(int i=0; i < report.size(); i++)
     {
         temp.clear(); // 초기화
         istringstream ss(report[i]);
@@ -25,7 +25,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
         //"temp[0] = muzi, tem[1] = frodo"
         // 신고자 무지, 신고대상 프로도 
 
-        for(int j=0; j < id_list.size(); j++)
+        for(int j=0; j < report.size(); j++)
         {
             if(temp[0] == id_list[j]) // 신고자를 id리스트에서 찾으면 
            {// j = reporter, k = report
@@ -42,7 +42,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
 
 
 //  신고 횟수 누적 
-    for(int i=0; i < id_list.size(); i++)
+    for(int i=0; i < report.size(); i++)
     {
         for(int j=0; j < id_list.size(); j++)
         {
@@ -74,7 +74,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
     }
 
 
-for(int i=0; i < id_list.size(); i++)
+for(int i=0; i < report.size(); i++)
 {
     for(int j=0; j < id_list.size(); j++)
     {
@@ -83,7 +83,7 @@ for(int i=0; i < id_list.size(); i++)
     cout << endl;
 }
 
-
+cout << endl << endl << "test" << endl << endl;  
     for(auto el : answer)
     {
         cout << el << " ";
