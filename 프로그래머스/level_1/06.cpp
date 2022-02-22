@@ -6,16 +6,16 @@
 using namespace std;
 
 
-vector<int> solution(vector<string> id_list, vector<string> report, int limit)
+vector<int> solution(vector<string> id_list, vector<string> report, int k)
 {
     // split
     vector<string> temp;
     string stringBuffer;
     vector<vector<bool>> reportList(report.size(), vector<bool>(id_list.size()));
-    vector<int> reportSate(id_list.size());
-    vector<int> answer(id_list.size(), 0);
-    vector<int> list(id_list.size(), 0);
-
+    vector<int> reportSate(id_list.size(), 0);
+    vector<int> answer(id_list.size(), 0); 
+    vector<int> list; // 신고자 주소 추척
+    
     for(int i=0; i < report.size(); i++)
     {
         temp.clear(); // 초기화
@@ -25,15 +25,15 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
         //"temp[0] = muzi, tem[1] = frodo"
         // 신고자 무지, 신고대상 프로도 
 
-        for(int j=0; j < report.size(); j++)
+        for(int j=0; j < id_list.size(); j++)
         {
             if(temp[0] == id_list[j]) // 신고자를 id리스트에서 찾으면 
            {// j = reporter, k = report
-                for(int k=0; k < id_list.size(); k++)
+                for(int K=0; K < id_list.size(); K++)
                 {
-                    if(temp[1] == id_list[k]) // 신고대상 
+                    if(temp[1] == id_list[K]) // 신고대상 
                     {
-                        reportList[j][k] = true; // reportList[][]에 저장 (신고 리스트 등록)
+                        reportList[j][K] = true; // reportList[][]에 저장 (신고 리스트 등록)
                     }
                 }
             }
@@ -55,16 +55,18 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
 
     for(int i=0; i < id_list.size(); i++)
     {
-        if(reportSate[i] >= limit) // 20211 
+        if(reportSate[i] >= k) // 20211 
         {
             list.push_back(i);  // N번째 아이디의 주소 02
         }
+        else
+            continue;
     }
 // 신고자에게 메일 발송 
 
     for(int i = 0; i < id_list.size(); i++)
     {
-        for(auto el : list)
+        for(auto &el : list)
         {
             if(reportList[i][el])
             {
@@ -72,27 +74,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
             }
         }
     }
-
-
-for(int i=0; i < report.size(); i++)
-{
-    for(int j=0; j < id_list.size(); j++)
-    {
-        cout << reportList[i][j] << " ";
-    }
-    cout << endl;
-}
-
-cout << endl << endl << "test" << endl << endl;  
-    for(auto el : answer)
-    {
-        cout << el << " ";
-    }
-    cout << endl;
- 
     return answer;
-
-
 }
 
 
@@ -109,10 +91,7 @@ int main()
     vector<string> report{"ryan con", "ryan con", "ryan con", "ryan con"};
     int k = 3;
 
-
-    //solution(id_list, report, k);
     solution(id_list, report, k);
-    //cout << "asda" << endl;
     return 0;    
 
 }
