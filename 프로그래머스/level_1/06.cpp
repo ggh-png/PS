@@ -16,7 +16,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
     vector<int> answer(id_list.size(), 0);
     vector<int> list(id_list.size(), 0);
 
-    for(int i=0; i <= id_list.size(); i++)
+    for(int i=0; i < id_list.size(); i++)
     {
         temp.clear(); // 초기화
         istringstream ss(report[i]);
@@ -41,7 +41,7 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
     }
 
 
-
+//  신고 횟수 누적 
     for(int i=0; i < id_list.size(); i++)
     {
         for(int j=0; j < id_list.size(); j++)
@@ -51,13 +51,16 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
         }
     }
 
+// 정지된 신고대상을 신고한 사람의 아이디를 찾음 
+
     for(int i=0; i < id_list.size(); i++)
     {
-        if(reportSate[i] >= limit)
+        if(reportSate[i] >= limit) // 20211 
         {
-            list.push_back(i);
+            list.push_back(i);  // N번째 아이디의 주소 02
         }
     }
+// 신고자에게 메일 발송 
 
     for(int i = 0; i < id_list.size(); i++)
     {
@@ -70,7 +73,26 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
         }
     }
 
+
+for(int i=0; i < id_list.size(); i++)
+{
+    for(int j=0; j < id_list.size(); j++)
+    {
+        cout << reportList[i][j] << " ";
+    }
+    cout << endl;
+}
+
+
+    for(auto el : answer)
+    {
+        cout << el << " ";
+    }
+    cout << endl;
+ 
     return answer;
+
+
 }
 
 
@@ -79,9 +101,14 @@ vector<int> solution(vector<string> id_list, vector<string> report, int limit)
 int main()
 
 {
+    // vector<string> id_list{"muzi", "frodo", "apeach", "neo"};
+    // vector<string> report{"muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"};
+    // int k = 2;
+
     vector<string> id_list{"con", "ryan"};
-    vector<string> report{ "ryan con", "ryan con", "ryan con", "ryan con"};
+    vector<string> report{"ryan con", "ryan con", "ryan con", "ryan con"};
     int k = 3;
+
 
     //solution(id_list, report, k);
     solution(id_list, report, k);
