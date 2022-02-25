@@ -49,9 +49,36 @@ int solution(int n) {
     return answer;
 }
 
+
+void test()
+{
+    int num = 45;
+    int num_1 = 45; // 몫 
+    int num_2; // 나머지 
+    bool flag = true;
+
+    while (flag)
+    {
+        num_2 = (num_1 * 3) % 3;
+        num_1 /= 3;
+        cout << num_1 << " " << num_2 << " ";
+        if(num_1 <=5)
+        {
+            cout << " asdasd | ";
+            //num_1 /= 3;
+            //num_2 = (num_1 * 3) % 3;
+            cout << num_1/3 << " " << num_1%3 << " ";
+            flag = false;
+        }
+    }
+    cout << endl;
+
+}
+
 int main()
 {
     int n = 45;
-    solution(n);
+    //solution(n);
+    test();
     return 0;
 }
