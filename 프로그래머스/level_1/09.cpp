@@ -12,22 +12,26 @@ int solution(int n) {
     vector<int> temp;
     while (flag)
     {
-        temp.push_back(n%3);
-        n /= 3;
-        if(n == 5)
+        if(temp_num < 12)
         {
             temp.push_back(n%3);
             temp.push_back(n/3);
+            //temp.pop_back();
             flag = false;
         }
-        else if(n <=3)
+        else if(n >= 12)
+        {
+            temp.push_back(n%3);
+            n /=3;
+        }
+        else if(n < 12)
         {
             temp.push_back(n%3);
             temp.push_back(n/3);
             temp.pop_back();
             flag = false;
         }
-        
+
     }
 
     int start = temp.size()-1;
@@ -50,7 +54,7 @@ int solution(int n) {
 
 int main()
 {
-    int n = 9;
+    int n = 8;
     solution(n);
     //test();
     return 0;
