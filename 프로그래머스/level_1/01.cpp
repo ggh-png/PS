@@ -37,7 +37,6 @@ vector<int> solution(vector<int>& array, vector<vector<int>>& commands) {
     return answer;
 }
 
-
 int main()
 {
     vector<int> array{1,5,2,6,3,7,4};
