@@ -36,10 +36,10 @@ int solution(int n, vector<int> lost, vector<int> reserve)
     sort(reserve.begin(), reserve.end());
 
 
- 
     for(int i=0; i < reserve.size(); i++)
         for(int j=0; j < spare.size(); j++)
             tempLost += reserve[i] == spare[j] ? 1 : 0;
+
 
     if(tempLost >= lost.size())
         tempLost = lost.size();
