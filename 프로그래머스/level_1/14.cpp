@@ -6,7 +6,7 @@ using namespace std;
 
 int solution(int n, vector<int> lost, vector<int> reserve) 
 {
-    int answer = n + reserve.size();
+    int answer = n;
     int tempLost = 0;
     vector<int> spare;
     answer -= lost.size();
