@@ -77,24 +77,9 @@ int solution(int n, vector<int> lost, vector<int> reserve)
         }
     }
 
-    //impossibleClass : lost
-    // spareSuit : reserve
-
-
-
     for(auto el : suitSituation)
         answer += (el != 0) ? 1 : 0; 
-
-
-    cout << "suitSituation : "; 
-    for(auto el : suitSituation)
-        cout << el << " ";
-    cout << endl;
-
-
-    cout << answer << endl;
-
-    
+ 
     return answer;
 }
 
