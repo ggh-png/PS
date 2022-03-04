@@ -15,7 +15,6 @@ long long solution(long long n)
         n /= 10;
     }
     sort(temp.begin(), temp.end());
-
     for(int i=0; i < temp.size(); i++)
         answer += pow(10, i)*temp[i];    
     return answer;
