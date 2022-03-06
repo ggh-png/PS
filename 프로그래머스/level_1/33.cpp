@@ -20,24 +20,14 @@ vector<string> solution(vector<string> strings, int n)
     sort(temp.begin(), temp.end());
 
     for(int i=0; i < strings.size(); i++)
-    {
         for(int j=0; j < temp.size(); j++)
-        {
-            if(temp[i] == strings[j][n])
+            if(strings[j] != "NULL")
             {
-                answer.push_back(strings[j]);
-                strings[j] = "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";    
+                if(temp[i] == strings[j][n])
+                {
+                    answer.push_back(strings[j]);
+                    strings[j] = "NULL";    
+                }
             }
-                
-        }
-    }
     return answer;
-}
-
-int main()
-{
-    vector<string> strings{"abce", "abcd", "cdx"};
-    int n = 2;
-    solution(strings, n);
-    return 0;
 }
