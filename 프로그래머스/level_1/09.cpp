@@ -12,42 +12,29 @@ int solution(int n) {
     vector<int> temp;
     while (flag)
     {
-        if(temp_num < 12)
-        {
-            temp.push_back(n%3);
-            temp.push_back(n/3);
-            //temp.pop_back();
-            flag = false;
-        }
-        else if(n >= 12)
+        if(n >= 9)
         {
             temp.push_back(n%3);
             n /=3;
         }
-        else if(n < 12)
-        {
+        else
+        {   
+            if(n==1)
+            {
+                temp.push_back(n%3);
+                flag = false;
+                break;
+            }
             temp.push_back(n%3);
             temp.push_back(n/3);
-            temp.pop_back();
             flag = false;
         }
-
     }
-
     int start = temp.size()-1;
     for(int i=start; i >= 0; i--)
     {
         answer += pow(3, i) * temp[start-i];
     }
-
-    cout << answer << "  " << temp.size() << endl << endl;
-
-    for(auto el : temp)
-    {
-        cout << el << " ";
-    }
-    cout << endl;
-
     return answer;
 }
 
