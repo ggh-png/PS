@@ -22,10 +22,3 @@ int solution(vector<int> nums)
     // 소수 판별 
     return answer;
 }
-
-int main()
-{
-    vector<int> nums{1,2,7,6,4};
-    solution(nums);
-    return 0; 
-}
