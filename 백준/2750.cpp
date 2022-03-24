@@ -4,13 +4,11 @@
 
 using namespace std;
 
-
-vector<int> solution(vector<int> arr) 
+void solution(vector<int> arr) 
 {
     sort(arr.begin(), arr.end());    
     for(auto el : arr)
         cout << el << endl;
-    return arr;
 }
 
 int main()
