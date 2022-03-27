@@ -1,26 +1,36 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
+#include<iostream>
+using namespace std; 
 
-using namespace std;
 
-void solution(vector<int> arr) 
-{
-    sort(arr.begin(), arr.end());    
-    for(auto el : arr)
-        cout << el << '\n';
-}
+// 데이터의 개수 입력 후 데이터 입력 하기  
+// 카운팅할 배열 선언 
+// 카운팅 하기 
+// 카운팅 한 배열 출력 
 
 int main()
-{
-    __int16 N;
-    cin >> N; 
-    vector<int> arr(N);
-    for(int i=0; i < N; i++)
-        cin >> arr[i];
+{   
+    ios_base :: sync_with_stdio(false); 
+    cin.tie(NULL); 
+    cout.tie(NULL);
 
+    // counting arr 
+    int arr[10001]={0}; 
+    int num;
+    int tmp;
 
-    solution(arr);
-
+    // 데이터 입력 
+    cin >> num;
+    for(int i=1; i <= num; i++)
+    {
+        cin >> tmp;
+        arr[tmp]++;
+    }
+    // 결과 출력
+    for(int i=1; i < 10001; i++)
+        while(arr[i] != 0)
+        {
+            cout << i << '\n';
+            arr[i]--; 
+        }       
     return 0;
 }
