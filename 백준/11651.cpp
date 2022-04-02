@@ -5,7 +5,7 @@
 
 using namespace std;
 
-bool compair(pair<int,int> a,
+bool compare(pair<int,int> a,
              pair<int,int> b)
 {
     if(a.second == b.second)
@@ -24,7 +24,7 @@ int main()
         scanf("%d%d", &x, &y);
         xy_list.push_back(pair<int, int>(x, y));
     }
-    sort(xy_list.begin(), xy_list.end(), compair);
+    sort(xy_list.begin(), xy_list.end(), compare);
     for(int i=0; i < xy_list.size(); i++)
         printf("%d %d\n", xy_list[i].first, xy_list[i].second);
 }
