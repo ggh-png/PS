@@ -5,7 +5,6 @@ using namespace std;
 // 0이 들어오면 최근에 입력한 수를 지운다. 
 // answer은 스택에 쌇인 수를 모두 더한 것이다. 
 
-
 int main()
 {
     vector<int> VectorStack;
