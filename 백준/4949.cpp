@@ -44,9 +44,11 @@ int main()
                 else{ answer.push_back("no"); break; } 
             }
             // 스택이 비어있고 .이 나오기 전까지 입력된 문자열을 확인했을 경우  
-			if (VectorStack.empty() && i == str.length() - 2) answer.push_back("yes"); 
+			if (VectorStack.empty() && i == str.length() - 2) 
+                answer.push_back("yes"); 
 			// 스택이 비어있지 않고 입력된 문자열을 확인했을 경우 
-            else if (!VectorStack.empty() && i == str.length() - 2) answer.push_back("no");
+            else if (!VectorStack.empty() && i == str.length() - 2) 
+                answer.push_back("no");
         }   
     }
     for(auto el : answer)
