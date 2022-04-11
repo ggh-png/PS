@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
 
 // 입력 : 공백이 있는 문자열 ... 오로지 '.'만이 문자열의 끝을 알림. 
@@ -9,49 +10,37 @@ using namespace std;
 
 int main()
 {
-    vector<string> OrderList; // input
     vector<string> answer;    // output
-    bool flag = true;
-
-
-    
-    while (flag)
+    string str;
+    answer.clear();
+    while (1)
     {
         // 문자열 입력
-        string str = "";
-        getline(cin, str); 
-
-            
+        getline(cin, str);
+        vector<char> VectorStack; 
+        if(str[0] == '.') break;   
         // 판별 ()
-        int tmp1=0, tmp2=0;
-        for(int i=0; i < str.size(); i++)
+        for(int i=0; i < str.size(); i++)   // 괄호를 입력 받으면 
         {
-            if(tmp1 < 0 || tmp2 < 0) break; 
-            if(str[i] == '(') tmp1++;
-            else if(str[i] == '[') tmp2++;
-            else if(str[i] == ')') tmp1--;
-            else if(str[i] == ']') tmp2--; 
-            else if(tmp1==0 && tmp2 > 0) 
-            {   
-                tmp2++; 
-                break;
-            } 
-            else if(tmp2==0 && tmp1 > 0)
+            if(str[i] == '(') VectorStack.push_back('(');
+            if(str[i] == '[') VectorStack.push_back('[');
+            if(str[i] == ')')
             {
-                tmp1++;
-                break;
-            } 
-        }
-        // tmp1, tmp2둘 다 0이여야만 함.
-        string result;
-        if(str == ".")
-            break;
-        else 
-            result = (tmp1 == 0) && (tmp2 == 0) ? "yes" : "no";
-        answer.push_back(result);
+                if(!VectorStack.empty() && *(VectorStack.end()-1) == '(') 
+                    VectorStack.pop_back();
+                else{ answer.push_back("no"); break; }    
+            }
+            if(str[i] == ']')
+            {
+                if(!VectorStack.empty() && *(VectorStack.end()-1) == '[') 
+                    VectorStack.pop_back();
+                else{ answer.push_back("no"); break; } 
+            }
+			if (VectorStack.empty() && i == str.length() - 2) answer.push_back("yes"); 
+			else if (!VectorStack.empty() && i == str.length() - 2) answer.push_back("no");
+        }   
     }
-    //answer.pop_back();
-    
     for(auto el : answer)
         cout << el << endl; 
 }
+
