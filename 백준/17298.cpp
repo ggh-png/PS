@@ -17,8 +17,8 @@ int main()
     
     int num; 
     cin >> num;
-    int OrderList[num];
-    int answer[num];
+    int OrderList[num]; // 입력값 저장 
+    int answer[num];    // 출력값 저장 
     stack<int> TmpStack;
 
     for(int i=0; i < num; i++)
