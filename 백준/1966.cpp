@@ -35,15 +35,6 @@ output
 따로 표기한 요소의 index값을 answer에 입력
 */
 
-bool compare(pair<int, int> a,
-             pair<int, int> b)
-{   // 학생의 점수가 같은 경우 나이가 많은 순으로 
-    if(a.first == b.first)
-        return a.second < b.second;
-    else
-        return a.first > b.first;
-}
-
 int main()
 {
     int num; // test case
@@ -56,49 +47,53 @@ int main()
     {
         cin >> N >> M;
         vector<pair<int, int>> q;
-        vector<int> TempCount(101, 0);
-        int max = 0;
         for(int j=0; j < N; j++)
         {
             int temp;
-            
             cin >> temp;
+            // 우선순위, 초기 순서 
             q.push_back(pair<int, int>(temp, j));
-            
         }
-        // 1 2 3 4 
-        //
-        vector<pair<int, int>> pq; 
+
         for(int j=0; j < q.size(); j++)
         {
-            
-            for(int k=j; k < q.size(); k++)
-                max = max < q[k].first ? q[k].first : max;
-            for()
-            pq.push_back(pair<int, int>())
+            int max = 1;
+            int index=0;  
+            for(int k=0; k < q.size(); k++)
+            {
+                if(max < q[k].first)
+                {
+                    max = q[k].first;
+                    index = k; 
+                }
+            }
+            // 큰수를 j 번째에 입력, index의 요소를 지움 
+            for(int k=0; k < index; k++)
+            {
+                int fir = q[j].first;
+                int sec = q[j].second; 
+                q.erase(q.begin()+j);
+                q.push_back(pair<int, int>(fir, sec));
+            }
         }
-
-
-
-        int count = 0;
-        cout << M << endl;
+        for(auto el : q)
+            cout << el.first << " ";
+        cout << endl;
+        int count=0;
         for(int j=0; j < q.size(); j++)
         {
             if(q[j].second == M)
             {
                 count++;
                 answer.push_back(count);
-                //break;
             }
             else
                 count++;
-            cout << q[j].second << " ";
         }
-        cout << endl;
-        q.clear();
     }
-    for(auto &el : answer)
-        cout << el << '\n';
-
+    // answer
+    // for(auto &el : answer)
+    //     cout << el << " ";
+    // cout << endl;
     return 0;
 }
