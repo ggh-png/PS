@@ -58,22 +58,27 @@ int main()
         for(int j=0; j < q.size(); j++)
         {
             int max = 1;
-            int index=0;  
-            for(int k=0; k < q.size(); k++)
-            {
-                if(max < q[k].first)
-                {
-                    max = q[k].first;
-                    index = k; 
+            // 1 2 3 4
+            // 2 3 4 1
+            // 3 4 1 2
+            // 4 1 2 3
+            // 4 2 3 1
+            // 4 3 1 2
+            // 4 3 2 1
+            // 1 1 9 1 1 1
+            for(int k=j; k < q.size(); k++)
+            {   // 보다 큰 수를 찾으면 
+                while((q[j].first < q[k].first))
+                { 
+                    int fir = q[j].first;
+                    int sec = q[j].second; 
+                    q.erase(q.begin()+j);
+                    q.push_back(pair<int, int>(fir, sec));
+                    int a=0;
+                    for(auto el : q)
+                        cout << el.second << ++a << " ";
+                    cout << endl;
                 }
-            }
-            // 큰수를 j 번째에 입력, index의 요소를 지움 
-            for(int k=0; k < index; k++)
-            {
-                int fir = q[j].first;
-                int sec = q[j].second; 
-                q.erase(q.begin()+j);
-                q.push_back(pair<int, int>(fir, sec));
             }
         }
         for(auto el : q)
