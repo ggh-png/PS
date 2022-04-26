@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
-#include <queue>
 using namespace std;
 /*
 N
@@ -27,14 +25,7 @@ output
 1 2 5
 */
 
-/* SOL
-우선순위 리스트에 찾을 요소를 따로 표기할 pair vector생성 
-내림차순으로 first 내림차순 정렬 
-같은 수가 나올 시 sec값으로 정렬 
-
-따로 표기한 요소의 index값을 answer에 입력
-*/
-
+int a = 0;
 int main()
 {
     int num; // test case
@@ -54,36 +45,38 @@ int main()
             // 우선순위, 초기 순서 
             q.push_back(pair<int, int>(temp, j));
         }
-
+        /*
+        work flow
+        1 2 3 4
+        2 3 4 1
+        3 4 1 2
+        4 1 2 3
+        4 2 3 1
+        4 3 2 1
+        */
         for(int j=0; j < q.size(); j++)
         {
-            int max = 1;
-            // 1 2 3 4
-            // 2 3 4 1
-            // 3 4 1 2
-            // 4 1 2 3
-            // 4 2 3 1
-            // 4 3 1 2
-            // 4 3 2 1
-            // 1 1 9 1 1 1
             for(int k=j; k < q.size(); k++)
             {   // 보다 큰 수를 찾으면 
-                while((q[j].first < q[k].first))
-                { 
-                    int fir = q[j].first;
-                    int sec = q[j].second; 
-                    q.erase(q.begin()+j);
-                    q.push_back(pair<int, int>(fir, sec));
-                    int a=0;
-                    for(auto el : q)
-                        cout << el.second << ++a << " ";
-                    cout << endl;
+                if(q[j].first < q[k].first)
+                {   
+                    for(int l=0; l < abs(k - j); l++)
+                    {   // 확인을 하지 않은 앞 요소 저장 
+                        int fir = q[j].first;
+                        int sec = q[j].second;
+                        // 큐 pop 
+                        q.erase(q.begin()+j);
+                        q.push_back(pair<int, int>(fir, sec));
+                        // work flow 출력 
+                        // for(auto el : q)
+                        //     cout << el.first << " ";
+                        // cout << "," << k-j << endl;    
+                    }
+                    // if문이 작동하면 for문이 도는동안 k값 고정
+                    k--;
                 }
             }
         }
-        for(auto el : q)
-            cout << el.first << " ";
-        cout << endl;
         int count=0;
         for(int j=0; j < q.size(); j++)
         {
@@ -96,9 +89,8 @@ int main()
                 count++;
         }
     }
-    // answer
-    // for(auto &el : answer)
-    //     cout << el << " ";
-    // cout << endl;
+    //answer
+    for(auto &el : answer)
+        cout << el << '\n';
     return 0;
 }
