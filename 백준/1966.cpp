@@ -73,7 +73,7 @@ int main()
                         // cout << "," << k-j << endl;    
                     }
                     // if문이 작동하면 for문이 도는동안 k값 고정
-                    k--;
+                    k = j;
                 }
             }
         }
