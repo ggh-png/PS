@@ -1,9 +1,7 @@
 #include <iostream>
 #include <string>
 #include <deque>
-#include <algorithm>
 using namespace std; 
-
 /* 
 test case num 
 order 
