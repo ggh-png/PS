@@ -79,14 +79,13 @@ int main()
         cin >> num;
         int L=0, R=0;
         for(int i=0; i < dq.size(); i++)
-        {
             if(dq[i] == num)
             {
                 L = i;
                 R = dq.size() - L;
                 break;
             }            
-        }
+            
         if(L <= R)
             while(1)
             {
