@@ -1,0 +1,117 @@
+#include <iostream>
+#include <deque>
+
+using namespace std;
+
+/* 
+문제
+지민이는 N개의 원소를 포함하고 있는 양방향 순환 큐를 가지고 있다.
+지민이는 이 큐에서 몇 개의 원소를 뽑아내려고 한다.
+지민이는 이 큐에서 다음과 같은 3가지 연산을 수행할 수 있다.
+
+1. 첫 번째 원소를 뽑아낸다.
+2. 왼쪽으로 한 칸 이동시킨다.
+3. 오른쪽으로 한 칸 이동시킨다.
+
+큐에 처음에 포함되어 있던 수 N이 주어진다.
+N 0 ~ N 까지의 큐가 존재하는듯 함. 
+그리고 지민이가 뽑아내려고 하는 원소의 위치가 주어진다. (이 위치는 가장 처음 큐에서의 위치이다.)
+M 
+이때, 그 원소를 주어진 순서대로 뽑아내는데 드는 2번, 3번 연산의 최솟값을 출력하는 프로그램을 작성하시오.
+
+입력
+첫째 줄에 큐의 크기 N과 뽑아내려고 하는 수의 개수 M이 주어진다.
+N 10, M 3
+10개의 큐 중 3개를 뽑는데 
+두번째 줄에는 뽑으려고 하는 수의 인덱스가 주어져 있다. 
+N은 50보다 작거나 같은 자연수이고, M은 N보다 작거나 같은 자연수이다.
+둘째 줄에는 지민이가 뽑아내려고 하는 수의 위치가 순서대로 주어진다.
+1 2 3
+위치는 1보다 크거나 같고, N보다 작거나 같은 자연수이다.
+
+10 3 
+2 9 5
+work flow
+
+1 2 3 4 5 6 7 8 9 10
+L 1
+2 3 4 5 6 7 8 9 10 1
+O 1
+3 4 5 6 7 8 9 10 1 - 2
+R 2
+1 3 4 5 6 7 8 9 10 - 2
+R 3
+10 1 3 4 5 6 7 8 9 - 2
+R 4
+9 10 1 3 4 5 6 7 8 - 2 
+O 4
+10 1 3 4 5 6 7 8 - 2 9
+L 5
+8 10 1 3 4 5 6 7 - 2 9
+L 6
+7 8 10 1 3 4 5 6 - 2 9
+L 7 
+6 7 8 10 1 3 4 5 - 2 9
+L 8
+5 6 7 8 10 1 3 4 - 2 9
+O 8
+6 7 8 10 1 3 4 - 2 9 5
+*/
+
+int main()
+{
+    ios_base :: sync_with_stdio(false); 
+    cin.tie(NULL); 
+    cout.tie(NULL);
+    
+    int N, M;
+    cin >> N >> M;
+    // 찾을 idx
+    deque<int> dq;
+    // N개의 dq 생성    
+    for(int i=1; i <= N; i++)
+        dq.push_back(i);
+    deque<int> idx;
+    int count = 0;
+    for(int i=0; i < M; i++)
+    {
+        int num;
+        cin >> num;
+        int L=0, R=0;
+        for(int i=0; i < dq.size(); i++)
+        {
+            if(dq[i] == num)
+            {
+                L = i;
+                R = dq.size() - L;
+                break;
+            }            
+        }
+        if(L <= R)
+            while(1)
+            {
+                if(num == dq.front())
+                {
+                    dq.pop_front();
+                    break;
+                }
+                dq.push_back(dq.front());
+                dq.pop_front();
+                count++;
+            }
+        else
+            while(1)
+            {
+                if(num == dq.front())
+                {
+                    dq.pop_front();
+                    break;
+                }
+                dq.push_front(dq.back());
+                dq.pop_back();
+                count++;
+            }
+    }
+    cout << count;
+    return 0;
+}
