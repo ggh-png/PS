@@ -8,25 +8,22 @@ int main() {
     cin.tie(NULL);
     ios::sync_with_stdio(false);
     
-	vector <string> v = {"c=","c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+	vector<string> v = {"c=","c-", "dz=", "d-", "lj", "nj", "s=", "z="};
 
-	string s;
-	cin >> s;
-	
+	string str;
+	cin >> str;
 	int index;
 
-	for (int i = 0; i < v.size(); i++) {
-
-		while (1){
-			index = s.find(v[i]);
+	for (int i = 0; i < v.size(); i++) 
+		while (1)
+        {   // iterator 반환 
+            // 찾지 못하면 -1 반환
+			index = str.find(v[i]);
 			if (index == string::npos)
 				break;
-			s.replace(index, v[i].length(), "#");
-			
+			str.replace(index, v[i].length(), "#");
 		}
-	}
-	
-	cout << s.size();
 
+	cout << str.size();
 	return 0;
 }
