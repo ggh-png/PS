@@ -22,6 +22,7 @@ int main()
         else
             arr[4]++;
      }
+    
     for(int i=1; i <= 4; i++)
         cout << "Q" << i << ": " << arr[i-1] << '\n';
     cout << "AXIS: " << arr[4] << '\n';
