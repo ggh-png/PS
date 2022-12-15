@@ -8,43 +8,12 @@ using namespace std;
 int n, r;
 
 string mo = "aeiou";
-// 비밀번호를 만들 알파벳 모음 
-vector<char> tmp_v;
 // 조합 
 vector<char> v;
-vector<char> mo_v;
-vector<char> ja_v;
 vector<char> vv;
-bool visited[130];
-bool visited2[130];
 
 
-// 모음 개수, 뽑힌 알파뱃의 총 개수 
 void combi(int idx)
-{
-    if(tmp_v.size() == r)
-    {
-        for(auto &el : tmp_v)
-            cout << el;
-        cout << endl;
-        return;
-    }
-    for(int i=idx; i < v.size(); i++)
-    {
-        if(!visited2[v[i]])
-        {
-            visited2[v[i]] = 1;
-            tmp_v.push_back(v[i]);
-            combi(idx + 1);
-            tmp_v.pop_back();
-            visited2[v[i]] = 0;
-        }
-    }
-}
-
-
-
-void make_arr(int idx)
 {
     // 조건을 만족할 경우 
     if(v.size() == n)
@@ -71,17 +40,12 @@ void make_arr(int idx)
             cout << endl;
             //return;
         }
-        else
-        {
-            //v.clear();
-            return;
-        }
     }
     // 조건을 만족하지 못한 경우 
     for(int i=idx+1; i < r; i++)    
     {  
         v.push_back(vv[i]);
-        make_arr(i);
+        combi(i);
         v.pop_back();
     } 
         return;
@@ -99,8 +63,6 @@ int main()
         vv.push_back(tmp);
     }
     sort(vv.begin(), vv.end());
-    make_arr(-1);
-
-    //cout << vv.size() << endl;
+    combi(-1);
     return 0;
 }
