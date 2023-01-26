@@ -18,13 +18,8 @@ void sol(int idx, int cnt, int sum, int ss)
         ss = sum;
     }
     for(int i=idx; i < 7; i++)
-        if(arr[i] + sum <= sizee)
-        {  
-            visited[i] = 1;
+        if(arr[i] + sum <= sizee) 
             sol(i, cnt+1, sum+arr[i], ss);
-            visited[i] = 0;
-        }
-    
     return;
 }
 
