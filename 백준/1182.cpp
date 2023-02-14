@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -7,7 +6,6 @@ int n, m;
 int cnt = 0;
 
 int arr[22];
-bool visited[22];
 
 void sol(int sum, int idx)
 {
